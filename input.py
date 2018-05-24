@@ -27,6 +27,4 @@ else:
     os.close(w2)
     r = remote('localhost', port)
     r.send('\xde\xad\xbe\xef')
-    print r.read()
-
 
