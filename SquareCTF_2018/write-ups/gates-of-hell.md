@@ -1,35 +1,57 @@
-EBX = 0x25
-for(i = 0; i < 16; ++i)
-{
-	EAX = strange_stoi(argv[i + 1]);
-	
-	aam	12h
-	aad	0F6h
-	jns sukces:
-	xor EBX, EBX ; fuck-up
-sukces:
+# gates of hell
 
-	EAX = 0x80480ca[EAX];
-	EAX = EAX * EBX;
-	EBX = EAX;
-	
-	for(j = 0x100; j > 0 ;--j)
-	{
-		EAX = 0x80480ca[j];
-		if(EAX > 0)
-		{
-			0x80480ca[j] = EAX - 1;
+## Description
+
+In this task we got 32-bit ELF `gates-of-hell`. All blind executions of this binary with random input ended without any output. So I've started to analyze the assembly, here is the recovered pseudocode:
+
+```c
+int main(int ac, char** av)
+{
+	if (ac < 16) return 0;
+    
+	EBX = 37;
+	for(i = 0; i < 16; ++i){
+		EAX = string_to_byte(argv[i + 1]);
+        
+		aam	0x12
+		aad	0x0F6
+		jns valid:
+		xor EBX, EBX
+	valid:
+        
+		EBX *= 0x80480ca[EAX];		
+		for(j = 255; j >= 0 ;--j){
+			if(0x80480ca[j] > 0){
+				0x80480ca[j]--;
+			}
 		}
 	}
+	if(EBX == 666) puts(flag)
 }
+```
 
-if(EBX == 0x29A) // 0x29A == 666 :)
-{
-	puts(flag)
-}
+## Solution
 
-//
+`strace` shows that only `exit()` syscall is called and `strings` shows that the flag is in binary (but not in our local version) `flag is here on server\n-- Alok`.
 
+Flag will be printed once `EBX` at the end is equal to 666 (initial vale of `EBX` is 37).
+
+The outer loop (`i in 1...16`) converts input parameter at position `i` to one byte decimal value and stores it in `EAX`. Then, "strange assertion" is performed on `EAX`:
+
+```c
+aam	0x12	; AL = AL % 0x12
+    		; AH = AL / 0x12
+aad	0x0F6	; AL = (AH * 0x0F6) + AL
+		    ; AH = 0
+             ; Sign flag set when msb is set in AL
+jns valid:
+xor EBX, EBX // EBX = 0, failure
+valid:
+```
+
+If this assertion fails, `EBX` is set to 0 and it ruins our whole work. Next, `EBX` is multiplied by `0x80480ca[input[i]]` and each of 256 bytes located under `0x80480ca` is decremented by one.
+
+```c
 0x80480ca:      0x05    0x09    0x04    0x0f    0x05    0x0b    0x10    0x0e
 0x80480d2:      0x0b    0x0d    0x0d    0x08    0x0c    0x07    0x10    0x02
 0x80480da:      0x06    0x04    0x0b    0x04    0x02    0x0d    0x07    0x0a
@@ -61,9 +83,19 @@ if(EBX == 0x29A) // 0x29A == 666 :)
 0x80481aa:      0x0f    0x0e    0x09    0x0e    0x10    0x02    0x04    0x0c
 0x80481b2:      0x02    0x0f    0x0f    0x03    0x04    0x09    0x08    0x0f
 0x80481ba:      0x10    0x03    0x0e    0x0d    0x04    0x03    0x02    0x01
-0x80481c2:      0x09    0x0c    0x01    0x07    0x02    0x0a    0x08	0x0a
+0x80481c2:      0x09    0x0c    0x01    0x07    0x02    0x0a    0x08    0x0a
+```
 
-//
+So all We have to do is to look at all initial values of `tab` located under `0x80480ca` (presented above) and solve following equation (with assumption that every `i` value passes "strange assertion"):
 
-solution - 32 15 30 2 0 16 3 11 1 8 8 12 9 7 3 14
+$$666 = 37 * \displaystyle\prod_{n=1}^{16} tab[input[i]] - i + 1$$
+
+And here is one of possible solutions:
+
+>./gates-of-hell 32 15 30 2 0 16 3 11 1 8 8 12 9 7 3 14
+>flag-526f64696e0000666
+
+
+
+
 
