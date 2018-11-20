@@ -2,9 +2,9 @@
 
 ## Description
 
-In this task We got `fixed_point.html` that served as an interface and engine for solving this task, the flag was of course removed from this file. We also had access to `fixed_point.html` hosted in remote server to obtain the real flag one We find out how to do this in local environment.
+In this task We got `fixed_point.html` that served as an interface and engine for solving this task, the flag was of course removed from this file. We also had access to `fixed_point.html` hosted in remote server to obtain the real flag once We find out how to do this in local environment.
 
-The code was very simple:
+The most interesting function: 
 
 ```js
 function f(x) {
@@ -46,7 +46,7 @@ function check() {
 }
 ```
 
-As We can see, the condition is also very simple  `input == f(input)`.
+The condition that had to be met to get the flag - `input == f(input)`.
 
 ## Solution
 
