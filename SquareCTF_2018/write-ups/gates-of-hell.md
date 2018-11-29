@@ -39,10 +39,10 @@ Flag will be printed once `EBX` at the end is equal to 666 (initial vale of `EBX
 The outer loop (`i in 1...16`) converts input parameter at position `i` to one byte decimal value and stores it in `EAX`. Then, "strange assertion" is performed on `EAX`:
 
 ```c
-aam 0x12	; AL = AL % 0x12
-			; AH = AL / 0x12
-aad 0x0F6	; AL = (AH * 0x0F6) + AL
-			; AH = 0
+aam 0x12    ; AL = AL % 0x12
+            ; AH = AL / 0x12
+aad 0x0F6   ; AL = (AH * 0x0F6) + AL
+            ; AH = 0
 jns valid:
 xor EBX, EBX
 valid:
