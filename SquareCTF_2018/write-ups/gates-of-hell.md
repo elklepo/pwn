@@ -40,12 +40,11 @@ The outer loop (`i in 1...16`) converts input parameter at position `i` to one b
 
 ```c
 aam	0x12	; AL = AL % 0x12
-    		; AH = AL / 0x12
+			; AH = AL / 0x12
 aad	0x0F6	; AL = (AH * 0x0F6) + AL
-		    ; AH = 0
-             ; Sign flag set when msb is set in AL
+			; AH = 0
 jns valid:
-xor EBX, EBX // EBX = 0, failure
+xor EBX, EBX
 valid:
 ```
 
@@ -86,7 +85,7 @@ If this assertion fails, `EBX` is set to 0 and it ruins our whole work. Next, `E
 0x80481c2:      0x09    0x0c    0x01    0x07    0x02    0x0a    0x08    0x0a
 ```
 
-So all We have to do is to look at all initial values of `tab` located under `0x80480ca` (presented above) and solve following equation (with assumption that every `i` value passes "strange assertion"):
+So all We have to do is look at all initial values of `tab` located under `0x80480ca` (presented above) and solve following equation (with assumption that every `i` value passes "strange assertion"):
 
 $$666 = 37 * \displaystyle\prod_{n=1}^{16} tab[input[i]] - i + 1$$
 
