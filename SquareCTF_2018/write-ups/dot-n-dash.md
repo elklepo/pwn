@@ -120,4 +120,4 @@ Once all chars are constructed, We've to simply print them form the biggest valu
 >
 >Congrats, you solved C1! The flag is flag-bd38908e375c643d03c6.
 
-`dot-n-dash.py` - Python script that automates the above steps.
+[dot-n-dash.py](../dot-n-dash.py) - Python script that automates the above steps.

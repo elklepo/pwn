@@ -3,7 +3,7 @@ import collections
 
 
 def read_and_recover_numbers():
-    with open(r"C:\Users\elklepo\Desktop\ctf\pwn\SquareCTF_2018\_dot-n-dash\instructions.txt") as f:
+    with open(r"./_dot-n-dash/instructions.txt") as f:
         l = list()
         count = 0
         while True:
@@ -36,7 +36,7 @@ if __name__ == '__main__':
             d[char_pos] = 1 << bit_pos
 
     sort_d = collections.OrderedDict(sorted(d.items(), reverse=True))
-    for k, v in sort_d.iteritems():
+    for k, v in sort_d.items(): #  iteritems() for Python 2.x
         sys.stdout.write(chr(v))
     sys.stdout.flush()
 

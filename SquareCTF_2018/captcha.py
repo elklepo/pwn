@@ -15,7 +15,7 @@ browser.fullscreen_window()
 browser.get(url)
 browser.execute_script("document.body.style.zoom='500%'")
 browser.save_screenshot(img_path)
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = 'tesseract.exe'  # must be in path
 
 img = PIL.Image.open(img_path)
 w, h = img.size

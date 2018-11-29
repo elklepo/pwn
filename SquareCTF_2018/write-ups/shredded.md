@@ -48,4 +48,4 @@ The last step was to generate and verify each possible QR code using Python scri
 
 > GOOD JOB. FLAG-80AD8BCF79
 
-`shredded.py` - Python script that automates the above steps.
+[shredded.py](../shredded.py) - Python script that automates the above steps.

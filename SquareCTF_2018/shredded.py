@@ -1,7 +1,7 @@
 import PIL.Image
 from pyzbar.pyzbar import decode
 
-img_dir = "C:\\Users\\jklepack\\Desktop\\ctf\\_shredded\\"
+img_dir = r"./_shredded/"
 qr_dimension = 21
 brute_bucket = list()
 
