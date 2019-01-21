@@ -10,7 +10,7 @@ from signal import alarm
 from subprocess import check_output
 from termcolor import colored
 
-alarm(10)
+#alarm(10)
 
 colors = ["red","blue","green","yellow","magenta","cyan","white"]
 # thanks http://patorjk.com/software/taag/#p=display&h=0&f=Crazy&t=echo
