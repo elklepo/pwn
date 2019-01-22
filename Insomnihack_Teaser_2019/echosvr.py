@@ -10,7 +10,7 @@ from signal import alarm
 from subprocess import check_output
 from termcolor import colored
 
-alarm(10)
+#alarm(10)
 
 colors = ["red","blue","green","yellow","magenta","cyan","white"]
 # thanks http://patorjk.com/software/taag/#p=display&h=0&f=Crazy&t=echo
@@ -36,9 +36,6 @@ def bye(s=""):
     exit()
 
 def check_input(payload):
-    if payload == 'thisfile':
-        bye(open("/bin/shell").read())
-
     if not all(ord(c) < 128 for c in payload):
         bye("ERROR ascii only pls")
 
@@ -55,20 +52,17 @@ def check_input(payload):
             payload.count(" ") > 30:
         bye("ERROR Too many special chars.")
     
-    # PATCH BEGIN
     payload = payload.replace(r'\\$\\$', ' 11 ')
     payload = payload.replace(r'\$\$', ' 10 ')
     payload = payload.replace(r' $$', ' 8 ')
-    print(payload)
-    # PATCH END
+    #print(payload)
     
     return payload
 
 
 print(colored(banner, choice(colors)))
-print("Hi, what would you like to echo today? (make sure to try 'thisfile')")
+print("Hi, what would you like to echo today?")
 payload = check_input(input())
-
 
 print("And how often would you like me to echo that?")
 count = max(min(int(input()), 10), 0)
