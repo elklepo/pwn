@@ -22,9 +22,18 @@ $ gdb -x script.gdb
 ncat -lkvp 1337 -e "/usr/bin/python3.6 `pwd`/echosvr.py"
 ```
 
-# bash
-## $(seq x y z)
-```
-$ echo $(seq 1 2 50)
-1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49
-```
+## redirections
+`>` redirects *stdout* to a file
+
+`2&>` redirects file handle "2" (almost always *stderr*) to some other file handle (it's generally written as `2>&1`, which redirects stderr to the same place as stdout).
+
+`&>` and `>&` redirect both *stdout* and *stderr* to a file. It's normally written as `&>file` (or `>&file`). It's functionally the same as `>file 2>&1`.
+
+`2>` redirects output to file handle 2 (usually *stderr*) to a file.
+
+## misc
+`( sleep 3;cat - )` -> runs new process for commands inside `()`. This process will sleep for 3 sec and then read from stdin.
+
+`$(seq 1 2 10)` -> 1 3 5 7 9
+
+`mkfifo <path>` -> create named FIFO pipe.
