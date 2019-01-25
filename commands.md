@@ -21,7 +21,7 @@ $ gdb -x script.gdb
 ```
 ncat -lkvp 1337 -e "/usr/bin/python3.6 `pwd`/echosvr.py"
 ```
-
+# bash
 ## redirections
 `>` redirects *stdout* to a file
 
