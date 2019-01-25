@@ -7,9 +7,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-char buff[256];
+typedef unsigned int uint;
 
-void print_flag()
+char buff[128];
+
+void flag()
 {
     char flag[33] = { 0 };
     int fd = open("./flag", O_RDONLY);
@@ -17,9 +19,9 @@ void print_flag()
     puts(flag);
 }
 
-void foo(int a, int **ppx, int b, int **ppy)
+void foo(int a, int b, int c, int **ppx, int d, int **ppy)
 {
-    printf("%x\n%x\n", **ppx + a * b, print_flag - a * b);
+    printf("%p\n%p\n", (uint)*ppx + a * c, (uint)flag - b * d);
 }
 
 int main(void)
@@ -33,16 +35,16 @@ int main(void)
         int *py;
         int  y;
     }s; 
-    
+
     s.px = &s.x;
     s.x  = 0xdeadface;
     s.py = &s.y;
     s.y  = 0xcafebabe;
+    
+    foo(0xf00d, 0x1337, 0xbad, &s.px, 0x997, &s.py);
 
     read(0, buff, sizeof(buff));
     
-    foo(1337, &s.px, 997, &s.py);
-
     printf(buff);
     
     exit(0);
