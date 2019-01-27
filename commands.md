@@ -31,6 +31,10 @@ ncat -lkvp 1337 -e "/usr/bin/python3.6 `pwd`/echosvr.py"
 
 `2>` redirects output to file handle 2 (usually *stderr*) to a file.
 
+# networking
+## nmap
+`sudo nmap -sS -p 1-500 -O 192.168.0.1/24` - stealth scan, ports range, identify OSes, address mask.
+ 
 ## misc
 `( sleep 3;cat - )` -> runs new process for commands inside `()`. This process will sleep for 3 sec and then read from stdin.
 
