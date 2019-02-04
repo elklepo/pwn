@@ -38,6 +38,8 @@ https://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/
 ## General
 ### 0ffset blog
 https://0ffset.net/welcome/
+### Pwn tips
+https://github.com/Naetw/CTF-pwn-tips
 
 ## Botnet
 ### Kelihos
