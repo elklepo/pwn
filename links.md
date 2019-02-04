@@ -1,11 +1,27 @@
 # Links
+## Tools
+### one_gadget
+https://github.com/david942j/one_gadget
 
 ## Memory management
 ### Understanding glibc malloc()
 https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/
 
-### Heap exploitation
+## libc
+### libc.blukat.me
+https://libc.blukat.me/
+### libc-database
+https://github.com/niklasb/libc-database
+### libc-binary-collection
+https://github.com/molnarg/libc-binary-collection
+### pwntools way
+http://docs.pwntools.com/en/stable/dynelf.html?fbclid=IwAR0eVTKoZlRMb2UOuQZhTIMc5IqPfiqMo1FMIEgu12i384410nHRNryKV0s
+
+## Heap exploitation
+### General
 https://heap-exploitation.dhavalkapil.com/attacks/first_fit.html
+### The house of spirit
+https://gbmaster.wordpress.com/2015/07/21/x86-exploitation-101-house-of-spirit-friendly-stack-overflow/?fbclid=IwAR1ISuPZD-DaCXW6Qu8yArd6zmjue1bbykHEZKV5Gk3NsvbOmcLpHtO1NWY
 
 ## Canaries
 ### Playing with canaries
@@ -24,4 +40,7 @@ https://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/
 https://0ffset.net/welcome/
 
 ## Botnet
+### Kelihos
 https://www.crowdstrike.com/blog/farewell-to-kelihos-and-zombie-spider/?fbclid=IwAR2bG1_D2oppn6AzyGcrc7IPbCERA5PXuyShlyfvWxnVENshi3DQr5CN6jU
+### Analysis of a Botnet Takeover
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5560627&tag=1&fbclid=IwAR3C25l-XtAfltO-xdVduv0QHyH-JSIf-XiAuoa6B8cq-TklFr-qgYhten8&tag=1
