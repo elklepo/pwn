@@ -2,6 +2,10 @@
 ## Tools
 ### one_gadget
 https://github.com/david942j/one_gadget
+### ROPgadget
+https://github.com/JonathanSalwan/ROPgadget/tree/master
+### Ropper
+https://github.com/sashs/Ropper
 
 ## ROP
 ### Return-Oriented-Programming (ROPFTW)
