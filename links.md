@@ -3,6 +3,10 @@
 ### one_gadget
 https://github.com/david942j/one_gadget
 
+## ROP
+### Return-Oriented-Programming (ROPFTW)
+https://www.exploit-db.com/docs/english/28479-return-oriented-programming-(rop-ftw).pdf
+
 ## Memory management
 ### Understanding glibc malloc()
 https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/
