@@ -54,3 +54,10 @@ https://github.com/Naetw/CTF-pwn-tips
 https://www.crowdstrike.com/blog/farewell-to-kelihos-and-zombie-spider/?fbclid=IwAR2bG1_D2oppn6AzyGcrc7IPbCERA5PXuyShlyfvWxnVENshi3DQr5CN6jU
 ### Analysis of a Botnet Takeover
 https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5560627&tag=1&fbclid=IwAR3C25l-XtAfltO-xdVduv0QHyH-JSIf-XiAuoa6B8cq-TklFr-qgYhten8&tag=1
+
+
+## Malware analysis
+https://www.inetsim.org/documentation.html
+https://blog.christophetd.fr/malware-analysis-lab-with-virtualbox-inetsim-and-burp/
+https://www.malwaretech.com/2017/11/creating-a-simple-free-malware-analysis-environment.html
+https://oalabs.openanalysis.net/2018/07/16/oalabs_malware_analysis_virtual_machine/
