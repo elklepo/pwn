@@ -58,6 +58,9 @@ https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5560627&tag=1&fbclid=Iw
 
 ## Malware analysis
 https://www.inetsim.org/documentation.html
+
 https://blog.christophetd.fr/malware-analysis-lab-with-virtualbox-inetsim-and-burp/
+
 https://www.malwaretech.com/2017/11/creating-a-simple-free-malware-analysis-environment.html
+
 https://oalabs.openanalysis.net/2018/07/16/oalabs_malware_analysis_virtual_machine/
