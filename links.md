@@ -1,6 +1,7 @@
 # Links
 ## General
 ### https://azeria-labs.com/ - ARM Assembly Basics, Binary Exploitation
+### https://pyformat.info/ - Python string formatting
 
 ## Tools
 ### one_gadget
