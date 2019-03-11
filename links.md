@@ -29,9 +29,11 @@ https://github.com/molnarg/libc-binary-collection
 ### pwntools way
 http://docs.pwntools.com/en/stable/dynelf.html?fbclid=IwAR0eVTKoZlRMb2UOuQZhTIMc5IqPfiqMo1FMIEgu12i384410nHRNryKV0s
 
-## Heap exploitation
-### General
-https://heap-exploitation.dhavalkapil.com/attacks/first_fit.html
+## Heap
+### Painless intro to the Linux userland heap
+https://sensepost.com/blog/2017/painless-intro-to-the-linux-userland-heap/
+### Heap exploitation
+https://heap-exploitation.dhavalkapil.com/
 ### The house of spirit
 https://gbmaster.wordpress.com/2015/07/21/x86-exploitation-101-house-of-spirit-friendly-stack-overflow/?fbclid=IwAR1ISuPZD-DaCXW6Qu8yArd6zmjue1bbykHEZKV5Gk3NsvbOmcLpHtO1NWY
 
