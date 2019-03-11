@@ -47,6 +47,9 @@
 
 [Pwn tips](https://github.com/Naetw/CTF-pwn-tips)
 
+[Exploit Exercises mirror 1](https://exploit.education/)
+[Exploit Exercises mirror 2](https://exploit-exercises.injecti0n.org/)
+
 ## Malware and botnet analysis
 [Kelihos](https://www.crowdstrike.com/blog/farewell-to-kelihos-and-zombie-spider/?fbclid=IwAR2bG1_D2oppn6AzyGcrc7IPbCERA5PXuyShlyfvWxnVENshi3DQr5CN6jU)
 
