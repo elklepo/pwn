@@ -35,7 +35,7 @@ ncat -lkvp 1337 -e "/usr/bin/python3.6 `pwd`/echosvr.py"
 
 # binary
 ## patch binary at offset
-`echo -e '\xC3' | dd of=alloca bs=1 seek=$((0x440)) count=1 conv=notrunc`
+`echo -e '\xC3' | dd of=myFile bs=1 seek=$((0x440)) count=1 conv=notrunc`
 
 # networking
 ## nmap
