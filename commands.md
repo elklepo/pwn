@@ -33,6 +33,10 @@ ncat -lkvp 1337 -e "/usr/bin/python3.6 `pwd`/echosvr.py"
 
 `2>` redirects output to file handle 2 (usually *stderr*) to a file.
 
+# binary
+## patch binary at offset
+`echo -e '\xC3' | dd of=alloca bs=1 seek=$((0x440)) count=1 conv=notrunc`
+
 # networking
 ## nmap
 `sudo nmap -sS -p 1-500 -O 192.168.1.0/24` - stealth scan, ports range, identify OSes, address mask.
