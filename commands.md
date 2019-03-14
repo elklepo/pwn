@@ -3,7 +3,7 @@
 `dump binary memory dump.bin addr_start addr_end`
 ## gdb scripting
 ```
-$ cat scrip.gdb
+$ cat script.gdb
 gef config context.enable 0
 pie break *0x6991
 pie run < input
@@ -14,7 +14,7 @@ while($i < 0x22)
     set $i = $i+1
     c
 end
-$ gdb -x script.gdb
+$ gdb file -x script.gdb
 ```
 
 # command on port via ncat 
