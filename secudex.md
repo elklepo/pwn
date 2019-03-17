@@ -45,6 +45,8 @@
 
 [0ffset blog](https://0ffset.net/welcome/)
 
+[Linux Perf Test](http://www.brendangregg.com/linuxperf.html)
+
 [Pwn tips](https://github.com/Naetw/CTF-pwn-tips)
 
 [Exploit Exercises mirror 1](https://exploit.education/)
