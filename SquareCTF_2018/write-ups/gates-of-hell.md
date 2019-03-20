@@ -91,7 +91,8 @@ $$666 = 37 * \displaystyle\prod_{n=1}^{16} tab[input[i]] - i + 1$$
 
 And here is one of possible solutions:
 
->./gates-of-hell 32 15 30 2 0 16 3 11 1 8 8 12 9 7 3 14
+>$ ./gates-of-hell 32 15 30 2 0 16 3 11 1 8 8 12 9 7 3 14
+>
 >flag-526f64696e0000666
 
 
