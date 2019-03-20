@@ -16,6 +16,24 @@ while($i < 0x22)
 end
 $ gdb file -x script.gdb
 ```
+## compilation stages
+```
+gcc -E -P compilation_example.c > compilation_example.i
+gcc -S -masm=intel compilation_example.c
+gcc -c compilation_example.c
+gcc compilation_example.c
+cp a.out a.out.stripped
+strip --strip-all a.out.stripped
+
+******* CREATED FILES *******
+compilation_example.i: preprocessed source
+compilation_example.s: assembly code
+compilation_example.o: object file
+a.out                : binary executable
+a.out.stripped       : stripped binary executable
+******* CREATED FILES *******
+
+```
 
 # command on port via ncat 
 ```
