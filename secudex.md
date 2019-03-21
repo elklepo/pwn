@@ -1,6 +1,9 @@
 
 # Security Pokédex
 
+[Ghidra tutorials](http://ghidra.re/online-courses/)
+
+
 ## Tools
 [one_gadget](https://github.com/david942j/one_gadget)
 
