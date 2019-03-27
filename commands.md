@@ -1,6 +1,19 @@
-# gdb
-## Dump memory range to file:
+## radare2
+`axt` - find references
+`/ Pattern` - find "Pattern" in binary
+`iI` - binary information
+`iz` - strings ?
+`is` - symbols
+`ie` - entrypoints
+`iM` - main
+`oo` - reopen with read
+`oo+` - reopen with read/write
+`afvn [n_name] [o_name]` - rename variable
+
+
+## gdb dump memory range to file:
 `dump binary memory dump.bin addr_start addr_end`
+
 ## gdb scripting
 ```
 $ cat script.gdb
