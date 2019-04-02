@@ -19,7 +19,6 @@
 
 `afvn [n_name] [o_name]` - rename variable
 
-
 ## gdb dump memory range to file:
 `dump binary memory dump.bin addr_start addr_end`
 
@@ -77,11 +76,13 @@ ncat -lkvp 1337 -e "/usr/bin/python3.6 `pwd`/echosvr.py"
 ## patch binary at offset
 `echo -e '\xC3' | dd of=myFile bs=1 seek=$((0x440)) count=1 conv=notrunc`
 
-# networking
+## create virtualenv with access to global packages
+`mkvirtualenv --system-site-packages --python=$(which python) angr_p2`
+
 ## nmap
 `sudo nmap -sS -p 1-500 -O 192.168.1.0/24` - stealth scan, ports range, identify OSes, address mask.
  
-## misc
+## bash misc
 `( sleep 3;cat - )` -> runs new process for commands inside `()`. This process will sleep for 3 sec and then read from stdin.
 
 `$(seq 1 2 10)` -> 1 3 5 7 9
