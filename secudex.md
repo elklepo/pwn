@@ -44,6 +44,8 @@
 ## General
 [azeria-labs - ARM Assembly Basics, Binary Exploitation](https://azeria-labs.com/)
 
+[PWNRIP](https://pwnrip.com/tutorials/)
+
 [Python string formatting](https://pyformat.info/)
 
 [0ffset blog](https://0ffset.net/welcome/)
