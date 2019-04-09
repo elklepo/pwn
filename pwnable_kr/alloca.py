@@ -20,6 +20,7 @@ for i in range(1000):
     t = process('/home/alloca/alloca', env=envv)
     t.sendline(str('-72'))
     t.sendline(ret)
+    # t.poll(True) without sleep(3.5) was not working correctly.
     sleep(3.5)
     if t.poll() is None:
         t.interactive()
