@@ -1,5 +1,5 @@
 /*
- * clang format++.c -m32 -O0 -Wl,-z,relro -fstack-protector -fPIC -pie -o format++
+ * clang format2.c -m32 -O0 -Wl,-z,relro -fstack-protector -fPIC -pie -o format2
 */
 
 #include <stdio.h>
