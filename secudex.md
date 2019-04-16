@@ -48,6 +48,10 @@
 
 [Python string formatting](https://pyformat.info/)
 
+[pyfuck](https://github.com/wanqizhu/pyfuck)
+
+[python, small char subset exploit](https://codegolf.stackexchange.com/questions/110648/fewest-distinct-characters-for-turing-completeness/110722#110722)
+
 [0ffset blog](https://0ffset.net/welcome/)
 
 [Linux Perf Test](http://www.brendangregg.com/linuxperf.html)
