@@ -88,3 +88,6 @@ ncat -lkvp 1337 -e "/usr/bin/python3.6 `pwd`/echosvr.py"
 `$(seq 1 2 10)` -> 1 3 5 7 9
 
 `mkfifo <path>` -> create named FIFO pipe.
+
+## git
+`git config --global url."https://github.com/".insteadOf git@github.com:` - force ssh instead of https
