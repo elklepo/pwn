@@ -38,7 +38,8 @@
 ## Crypto
 [English text frequencies](http://sxlist.com/techref/method/compress/etxtfreq.htm)
 
-## Random numbers
+## Maths
+[integer sequences encyclopedia](https://oeis.org)
 [How to safely generate random numbers](https://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/)
 
 ## General
