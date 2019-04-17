@@ -91,3 +91,9 @@ ncat -lkvp 1337 -e "/usr/bin/python3.6 `pwd`/echosvr.py"
 
 ## git
 `git config --global url.ssh://git@github.com/.insteadOf https://github.com/` - force ssh instead of https
+
+remember ssh key password
+```
+eval `ssh-agent -s`
+ssh-add
+```
