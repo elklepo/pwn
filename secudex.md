@@ -40,6 +40,7 @@
 
 ## Maths
 [integer sequences encyclopedia](https://oeis.org)
+
 [How to safely generate random numbers](https://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/)
 
 ## General
@@ -60,6 +61,7 @@
 [Pwn tips](https://github.com/Naetw/CTF-pwn-tips)
 
 [Exploit Exercises mirror 1](https://exploit.education/)
+
 [Exploit Exercises mirror 2](https://exploit-exercises.injecti0n.org/)
 
 ## Windows
