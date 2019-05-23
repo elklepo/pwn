@@ -65,6 +65,7 @@
 [Exploit Exercises mirror 2](https://exploit-exercises.injecti0n.org/)
 
 ## Windows
+[Reverse Engineering Malware](https://www.hackers-arise.com/single-post/2017/02/17/Reverse-Engineering-Malware-Part-1-Getting-Started)
 [PE section names](http://www.hexacorn.com/blog/2016/12/15/pe-section-names-re-visited/)
 
 ## Malware and botnet analysis
