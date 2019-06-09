@@ -1,8 +1,9 @@
 
 # Security Pokédex
-
 [Ghidra tutorials](http://ghidra.re/online-courses/)
 
+## Symbolic execution
+[angr cheatsheet](https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md)
 
 ## Tools
 [one_gadget](https://github.com/david942j/one_gadget)
@@ -66,6 +67,7 @@
 
 ## Windows
 [Reverse Engineering Malware](https://www.hackers-arise.com/single-post/2017/02/17/Reverse-Engineering-Malware-Part-1-Getting-Started)
+
 [PE section names](http://www.hexacorn.com/blog/2016/12/15/pe-section-names-re-visited/)
 
 ## Malware and botnet analysis
