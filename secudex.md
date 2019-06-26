@@ -73,6 +73,8 @@
 ## Malware and botnet analysis
 [Kelihos](https://www.crowdstrike.com/blog/farewell-to-kelihos-and-zombie-spider/?fbclid=IwAR2bG1_D2oppn6AzyGcrc7IPbCERA5PXuyShlyfvWxnVENshi3DQr5CN6jU)
 
+[qmemcpy](https://qmemcpy.io/)
+
 [Analysis of a Botnet Takeover](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5560627&tag=1&fbclid=IwAR3C25l-XtAfltO-xdVduv0QHyH-JSIf-XiAuoa6B8cq-TklFr-qgYhten8&tag=1)
 
 [iNetsim honeypot](https://www.inetsim.org/documentation.html)
