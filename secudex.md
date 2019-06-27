@@ -84,3 +84,5 @@
 [Creating a Simple Free Malware Analysis Environment](https://www.malwaretech.com/2017/11/creating-a-simple-free-malware-analysis-environment.html)
 
 [OALabs Malware Analysis Virtual Machine](https://oalabs.openanalysis.net/2018/07/16/oalabs_malware_analysis_virtual_machine/)
+
+[UUID DB](https://uuid.pirate-server.com/)
