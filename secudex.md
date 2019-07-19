@@ -14,6 +14,7 @@
 
 ## ROP
 [Return-Oriented-Programming (ROPFTW)](https://www.exploit-db.com/docs/english/28479-return-oriented-programming-(rop-ftw).pdf)
+
 [Rop tricks](https://trustfoundry.net/basic-rop-techniques-and-tricks/)
 
 ## Linux memory management
