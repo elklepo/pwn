@@ -97,3 +97,5 @@ remember ssh key password
 eval `ssh-agent -s`
 ssh-add
 ```
+## tshark dump data
+`tshark -r error_reporting.pcap -Y "icmp.type==0" -e "data.data" -Tfields`
