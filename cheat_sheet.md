@@ -99,3 +99,17 @@ ssh-add
 ```
 ## tshark dump data
 `tshark -r error_reporting.pcap -Y "icmp.type==0" -e "data.data" -Tfields`
+
+## python
+### draw lines/dots on image
+```
+from PIL import Image, ImageDraw
+#                       x    y
+img = Image.new('RGB', (30, 200), (255, 255, 255))
+d = ImageDraw.Draw(img)
+#     x    y
+m = [(10, 100), (20, 100), (15, 150), (10, 100)]
+d.line(m, fill=(0,0,0), width=2)
+d.point(m, fill=(255,0,0))
+img.save("image.png", "PNG")
+```
