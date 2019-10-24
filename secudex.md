@@ -88,3 +88,7 @@
 [OALabs Malware Analysis Virtual Machine](https://oalabs.openanalysis.net/2018/07/16/oalabs_malware_analysis_virtual_machine/)
 
 [UUID DB](https://uuid.pirate-server.com/)
+
+[Ransomware name by note](https://id-ransomware.malwarehunterteam.com/)
+
+[Cape Sandbox](https://cape.contextis.com/)
