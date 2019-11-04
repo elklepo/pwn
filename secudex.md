@@ -2,6 +2,9 @@
 # Security Pokédex
 [Ghidra tutorials](http://ghidra.re/online-courses/)
 
+## Writeups
+[blind string format](https://www.da.vidbuchanan.co.uk/blog/HITB-XCTF-2018-babypwn.html)
+
 ## Symbolic execution
 [angr cheatsheet](https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md)
 
