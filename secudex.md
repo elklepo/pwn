@@ -95,3 +95,5 @@
 [Ransomware name by note](https://id-ransomware.malwarehunterteam.com/)
 
 [Cape Sandbox](https://cape.contextis.com/)
+
+[The Ultimate Anti-Reversing Reference](http://anti-reversing.com/Downloads/Anti-Reversing/The_Ultimate_Anti-Reversing_Reference.pdf)
