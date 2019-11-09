@@ -77,6 +77,8 @@
 
 [Shellcode crafting 32bit](https://securitycafe.ro/2016/02/15/introduction-to-windows-shellcode-development-part-3/)
 
+[Shellcode crafting 64bit](https://nytrosecurity.com/2019/06/30/writing-shellcodes-for-windows-x64/amp/)
+
 ## Malware and botnet analysis
 [Kelihos](https://www.crowdstrike.com/blog/farewell-to-kelihos-and-zombie-spider/?fbclid=IwAR2bG1_D2oppn6AzyGcrc7IPbCERA5PXuyShlyfvWxnVENshi3DQr5CN6jU)
 
