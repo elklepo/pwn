@@ -3,7 +3,10 @@
 [Ghidra tutorials](http://ghidra.re/online-courses/)
 
 ## Writeups
-[blind string format](https://www.da.vidbuchanan.co.uk/blog/HITB-XCTF-2018-babypwn.html)
+blind string formats
+[[1]](https://www.da.vidbuchanan.co.uk/blog/HITB-XCTF-2018-babypwn.html) 
+[[2]](https://blog.skullsecurity.org/2015/defcon-quals-babyecho-format-string-vulns-in-gory-detail)
+[[3]](https://fbesnard.com/2018/04/13/HITB-XCTF-Quals-2018-babypwn)
 
 ## Symbolic execution
 [angr cheatsheet](https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md)
@@ -53,6 +56,8 @@
 [azeria-labs - ARM Assembly Basics, Binary Exploitation](https://azeria-labs.com/)
 
 [PWNRIP](https://pwnrip.com/tutorials/)
+
+[j00ru & Gynvael CTF tips](https://j00ru.vexillium.org/slides/2015/insomnihack.pdf)
 
 [Python string formatting](https://pyformat.info/)
 
