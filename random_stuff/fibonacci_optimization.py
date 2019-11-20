@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 #
 # CODE TAKEN FROM http://eternal.red/2018/unicorn-engine-tutorial/
 # applied small code modifications
@@ -15,9 +16,9 @@ STACK_SIZE = 1024*1024
 
 mu.mem_map(BASE, 1024*1024)
 mu.mem_map(STACK_ADDR, STACK_SIZE)
-
-mu.mem_write(BASE, read("./fibonacci"))
-mu.reg_write(UC_X86_REG_RSP, STACK_ADDR + STACK_SIZE/2)
+content = read('./fibonacci', mode='rb')
+mu.mem_write(BASE, content)
+mu.reg_write(UC_X86_REG_RSP, STACK_ADDR + STACK_SIZE // 2)
 
 instructions_skip_list = [0x00000000004004EF, 0x00000000004004F6, 0x0000000000400502, 0x000000000040054F]
 
