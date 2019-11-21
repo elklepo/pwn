@@ -31,14 +31,14 @@ VOID displayCurrentContext(CONTEXT *ctx)
     << "RIP = " << std::setw(16) << PIN_GetContextReg(ctx, REG_RIP) << std::endl << std::endl;
 }
 
-std::stack<pair<pair<ADDRINT, ADDRINT>, ADDRINT>> stack;
-std::map<pair<ADDRINT, ADDRINT>, pair<ADDRINT, ADDRINT>> map;
+std::stack<pair<pair<INT32, UINT32>, UINT32*>> stack;
+std::map<pair<INT32, UINT32>, pair<INT32, UINT32>> map;
 
-VOID foo_entry_hook(CONTEXT *ctx, ADDRINT arg1, ADDRINT arg2_ptr, ADDRINT ret_addr)
+VOID foo_entry_hook(CONTEXT *ctx, INT32 arg1, UINT32 *arg2_ptr, UINT64 ret_addr)
 {   
     // read arg2 value from its reference
-    ADDRINT arg2;
-    PIN_SafeCopy(&arg2, (void*)arg2_ptr, 4);
+    UINT32 arg2;
+    PIN_SafeCopy(&arg2, (void*)arg2_ptr, sizeof(arg2));
 
     auto args = std::make_pair(arg1, arg2);
 
@@ -59,17 +59,17 @@ VOID foo_entry_hook(CONTEXT *ctx, ADDRINT arg1, ADDRINT arg2_ptr, ADDRINT ret_ad
     // override first return value
     PIN_SetContextReg(ctx, REG_RAX, rvals.first);
     // override second return value which was passed as reference
-    PIN_SafeCopy((void*)arg2_ptr, &rvals.second, sizeof(ADDRINT));
+    PIN_SafeCopy((void*)arg2_ptr, &rvals.second, sizeof(rvals.second));
     // set RIP to function return address
     PIN_SetContextReg(ctx, REG_INST_PTR, ret_addr);
     // pop return address from stack
-    ADDRINT r_rsp = PIN_GetContextReg(ctx, LEVEL_BASE::REG_RSP);
+    UINT64 r_rsp = PIN_GetContextReg(ctx, LEVEL_BASE::REG_RSP);
     PIN_SetContextReg(ctx, REG_RSP, r_rsp + 8);
     // resume execution with updated context
     PIN_ExecuteAt(ctx);
 }
 
-VOID foo_ret_hook(ADDRINT rval1)
+VOID foo_ret_hook(INT32 rval1)
 {
     // get both argument values and reference to second argument for given call
     auto params = stack.top();
@@ -77,7 +77,7 @@ VOID foo_ret_hook(ADDRINT rval1)
     auto args = params.first;
 
     // read second return value using second argument reference
-    ADDRINT rval2;
+    UINT32 rval2;
     PIN_SafeCopy(&rval2, (void*)params.second, sizeof(rval2));
 
     // cache return values for given arguments
@@ -139,7 +139,6 @@ int main(int argc, char *argv[])
     
     // Write to a file since cout and cerr maybe closed by the application
     TraceFile.open(KnobOutputFile.Value().c_str());
-    TraceFile << std::hex;
     TraceFile.setf(ios::showbase);
     
     // Register Image to be called to instrument functions.

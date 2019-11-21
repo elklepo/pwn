@@ -1,6 +1,7 @@
-Solver for fibonacci 'optimize me' task.
+Solver for fibonacci 'optimize me' task. Based on my `cache_function_calls` Pin Tool.
 
 ```
-$PIN_ROOT/pin -t obj-intel64/fibonacci_solver.so -- ../fibonacci ; cat fibonacci_solver.log
+make
+$PIN_ROOT/pin -t obj-intel64/fibonacci_solver.so -- ../fibonacci
 ```
 
