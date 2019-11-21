@@ -5,7 +5,9 @@
 #include <map> 
 #include <utility> 
 using std::hex;
+using std::dec;
 using std::cerr;
+using std::cout;
 using std::string;
 using std::ios;
 using std::endl;
@@ -14,7 +16,7 @@ using std::pair;
 std::ofstream TraceFile;
 
 KNOB<string> KnobOutputFile(KNOB_MODE_WRITEONCE, "pintool",
-    "o", "cache_function_calls.log", "specify trace file name");
+    "o", "cache_function_calls_probe.log", "specify trace file name");
 
 
 VOID displayCurrentContext(CONTEXT *ctx)
@@ -32,10 +34,10 @@ VOID displayCurrentContext(CONTEXT *ctx)
 }
 
 
-std::stack<pair<pair<UINT64, UINT64>, UINT64 *>> stack;
 std::map<pair<UINT64, UINT64>, pair<UINT64, UINT64>> map;
  
-VOID foo_entry_hook(CONTEXT *ctx, UINT64 arg1, UINT64 * arg2_ptr, UINT64 ret_addr)
+typedef UINT64 ( *FP_foo )( UINT64, UINT64 * );
+UINT64 new_foo(FP_foo orgFuncptr, UINT64 arg1, UINT64 * arg2_ptr)
 {
     // read arg2 value from its reference
     UINT64 arg2;
@@ -43,49 +45,30 @@ VOID foo_entry_hook(CONTEXT *ctx, UINT64 arg1, UINT64 * arg2_ptr, UINT64 ret_add
 
     auto args = std::make_pair(arg1, arg2);
 
-    // if return values are not already cached for given arguments
     if(map.count(args) == 0)
     {
-        // push to internal stack both argument values 
-        // and reference to second argument (which is also reference to second return value).
-        stack.push(std::make_pair(args, arg2_ptr));
-        // let the function execute
-        return;
+        // execute original function
+        UINT64 rval1 = orgFuncptr( arg1, arg2_ptr );
+        // read rval2 value from its reference
+        UINT64 rval2;
+        PIN_SafeCopy(&rval2, (void*)arg2_ptr, sizeof(rval2));
+
+        TraceFile << "foo(" << arg1 << ", " << arg2 << ") = " << rval1 << ", " << rval2 << endl;
+        // cache return values
+        map[args] = std::make_pair(rval1, rval2);
+        return rval1;
     }
 
     // get cached return values for given arguments
     auto rvals = map[args];
-    TraceFile << "foo(" << arg1 << ", " << arg2 << ") = "<< rvals.first << ", " << rvals.second << " [cached]" << endl;
+    TraceFile << "foo(" << arg1 << ", " << arg2 << ") = " << rvals.first << ", " << rvals.second << " [cached]" << endl;
 
-    // override first return value
-    PIN_SetContextReg(ctx, REG_RAX, rvals.first);
     // override second return value which was passed as reference
     PIN_SafeCopy((void*)arg2_ptr, &rvals.second, sizeof(rvals.second));
-    // set RIP to function return address
-    PIN_SetContextReg(ctx, REG_INST_PTR, ret_addr);
-    // pop return address from stack
-    UINT64 r_rsp = PIN_GetContextReg(ctx, LEVEL_BASE::REG_RSP);
-    PIN_SetContextReg(ctx, REG_RSP, r_rsp + 8);
-    // resume execution with updated context
-    PIN_ExecuteAt(ctx);
+
+    return rvals.first;
 }
 
-VOID foo_ret_hook(UINT64 rval1)
-{
-    // get both argument values and reference to second argument for given call
-    auto params = stack.top();
-    stack.pop();
-    auto args = params.first;
-
-    // read second return value using second argument reference
-    UINT64 rval2;
-    PIN_SafeCopy(&rval2, (void*)params.second, sizeof(rval2));
-
-    // cache return values for given arguments
-    map[args] = std::make_pair(rval1, rval2);
-    
-    TraceFile << "foo(" << args.first << ", " << args.second << ") = " << rval1 << ", " << rval2 << endl;
-}
 
 VOID Image(IMG img, VOID *v)
 {
@@ -94,22 +77,33 @@ VOID Image(IMG img, VOID *v)
 
     if (RTN_Valid(fooRtn))
     {
-        RTN_Open(fooRtn);
+        if (RTN_IsSafeForProbedReplacement(fooRtn))
+        {
+            // create function prototype
+            PROTO proto_foo= PROTO_Allocate(
+                PIN_PARG(UINT64), 
+                CALLINGSTD_DEFAULT, 
+                "foo",
+                PIN_PARG(UINT64), 
+                PIN_PARG(UINT64 *), 
+                PIN_PARG_END());
+            // replace function with wrapper
+            RTN_ReplaceSignatureProbed(
+                fooRtn, 
+                AFUNPTR(new_foo),
+                IARG_PROTOTYPE, proto_foo,
+                IARG_ORIG_FUNCPTR,
+                IARG_FUNCARG_ENTRYPOINT_VALUE, 0,
+                IARG_FUNCARG_ENTRYPOINT_VALUE, 1,
+                IARG_END);
 
-        // Instrument foo() at entry.
-        RTN_InsertCall(fooRtn, IPOINT_BEFORE, (AFUNPTR)foo_entry_hook,
-                        IARG_CONTEXT,
-                        IARG_FUNCARG_ENTRYPOINT_VALUE, 0,
-                        IARG_FUNCARG_ENTRYPOINT_VALUE, 1,
-                        IARG_RETURN_IP,
-                        IARG_END);
-
-        // Instrument foo() at returns.
-        RTN_InsertCall(fooRtn, IPOINT_AFTER, (AFUNPTR)foo_ret_hook,
-                        IARG_FUNCRET_EXITPOINT_VALUE, // same as IARG_REG_VALUE, REG_RAX
-                        IARG_END);
-
-        RTN_Close(fooRtn);
+            PROTO_Free(proto_foo);
+        }
+        else
+        {
+            cout << "Skip replacing foo() in " << IMG_Name(img) << " since it is not safe." << endl;
+            exit(-1);
+        }
     }
 }
 
@@ -120,7 +114,7 @@ VOID Fini(INT32 code, VOID *v)
    
 INT32 Usage()
 {
-    cerr << "This tool shows a way to cache function return values." << endl;
+    cerr << "This tool shows a way to cache function return values using probe mode." << endl;
     cerr << endl << KNOB_BASE::StringKnobSummary() << endl;
     return -1;
 }
@@ -142,8 +136,8 @@ int main(int argc, char *argv[])
     IMG_AddInstrumentFunction(Image, 0);
     PIN_AddFiniFunction(Fini, 0);
 
-    // Never returns
-    PIN_StartProgram();
+    // Start the program in probe mode, never returns
+    PIN_StartProgramProbed();
     
     return 0;
 }
