@@ -122,7 +122,7 @@ VOID Fini(INT32 code, VOID *v)
    
 INT32 Usage()
 {
-    cerr << "This tool produces a trace of calls to malloc." << endl;
+    cerr << "This tool shows a way to cache function return values." << endl;
     cerr << endl << KNOB_BASE::StringKnobSummary() << endl;
     return -1;
 }
