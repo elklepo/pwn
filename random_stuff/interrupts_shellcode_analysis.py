@@ -27,8 +27,26 @@ uc.reg_write(UC_X86_REG_ESP, STACK_ADDR + STACK_SIZE // 2)
 
 syscall_name = {1: "sys_exit", 15: "sys_chmod"}
 
-def hook_code(uc, address, size, user_data):
+
+def hook_intr(uc, intno, user_data):
+    # only handle Linux syscall
+    if intno != 0x80:
+        print("got interrupt %x ???" %intno);
+        exit(0)
+    r_eax = uc.reg_read(UC_X86_REG_EAX)
+    r_ebx = uc.reg_read(UC_X86_REG_EBX)
+    r_ecx = uc.reg_read(UC_X86_REG_ECX)
+    r_edx = uc.reg_read(UC_X86_REG_EDX)
     
+    if syscall_name[r_eax] == "sys_chmod":
+        s = uc.mem_read(r_ebx, 20).split(b"\x00")[0]
+        print('    sys_chmod(0x{:08x}={}, {});'.format(r_ebx, s.decode(), oct(r_ecx)))
+    elif syscall_name[r_eax] == "sys_exit":
+        print('    exit(0x{:08x});'.format(r_ebx))
+        exit()
+
+
+def hook_instruction(uc, address, size, user_data): 
     machine_code = uc.mem_read(address, size)
     for i in cs.disasm(machine_code, address):
         print("0x{:08x}: {} {} {}".format(
@@ -36,22 +54,12 @@ def hook_code(uc, address, size, user_data):
             ' '.join(['{:02x}'.format(b) for b in i.bytes]).ljust(20),
             i.mnemonic,
             i.op_str))
+    #uc.reg_write(UC_X86_REG_EIP, address + size)
 
-    if machine_code == b"\xcd\x80": # int 80
-        r_eax = uc.reg_read(UC_X86_REG_EAX)
-        r_ebx = uc.reg_read(UC_X86_REG_EBX)
-        r_ecx = uc.reg_read(UC_X86_REG_ECX)
-        r_edx = uc.reg_read(UC_X86_REG_EDX)
-        
-        if syscall_name[r_eax] == "sys_chmod":
-            s = uc.mem_read(r_ebx, 20).split(b"\x00")[0]
-            print('    sys_chmod(0x{:08x}={}, {});'.format(r_ebx, s.decode(), oct(r_ecx)))
-            print(oct(r_ecx))
-        elif syscall_name[r_eax] == "sys_exit":
-            print('    exit(0x{:08x});'.format(r_ebx))
-            exit()
-        uc.reg_write(UC_X86_REG_EIP, address + size)
 
-uc.hook_add(UC_HOOK_CODE, hook_code)
+# hook interrupts
+uc.hook_add(UC_HOOK_INTR, hook_intr)
+# hook other instructions
+uc.hook_add(UC_HOOK_CODE, hook_instruction)
 
 uc.emu_start(BASE, BASE - 1)
