@@ -1,3 +1,5 @@
+; nasm shellode.asm
+
 [bits 32]
 times 256 nop
 

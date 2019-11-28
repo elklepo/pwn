@@ -2,6 +2,11 @@
 #
 # CODE TAKEN FROM http://eternal.red/2018/unicorn-engine-tutorial/
 # applied some modifications
+# capstone + unicorn useful refs:
+# https://www.capstone-engine.org/lang_python.html
+# https://github.com/unicorn-engine/unicorn/blob/master/bindings/python/sample_x86.py
+# https://github.com/unicorn-engine/unicorn/blob/master/samples/sample_x86.c
+# https://github.com/unicorn-engine/unicorn/blob/master/bindings/python/unicorn/unicorn_const.py
 #
 
 from pwn import *
