@@ -1,6 +1,6 @@
-### Windows Secrets #rev #forensics
+## Windows Secrets #rev #forensics
 
-#### inputs 
+### inputs 
 
 `windows-secrets.7z` is provided with the task description, archive contains `AppData` directory.
 
@@ -10,9 +10,9 @@ Most interesting files are:
 - `\AppData\Local\Temp\flag.enc` - 208 raw bytes
 - `\AppData\Local\Temp\BGInfo.bmp` - Wallpaper from IE 11 Win7 virtual machine that Microsoft provides for developers [here](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/). The key observation here is that thanks to this we know the user password - `Passw0rd!`
 
-#### fencp.exe analysis
+### fencp.exe analysis
 
-##### dynamic analysis
+#### dynamic analysis
 
 Running `fencp.exe` with no arguments:
 
@@ -24,7 +24,7 @@ When running `fencp.exe` with path to some dummy file, nothing is printed to `st
 
 I did not spot network traffic.
 
-##### static analysis
+#### static analysis
 
 `fencp.exe` contains plenty of imports but a lot of crap strings suggest some kind of packing. `.text` section was almost entirely not parsed by IDA, except of one method that was most probably responsible for early stages of unpacking.
 
@@ -37,7 +37,7 @@ I did not spot network traffic.
 
 After dumping process memory at this breakpoint and fixing import table I was able to get [fencp_dump.exe](./fencp_dump.exe). Loading it to IDA confirmed that I got fully unpacked binary.
 
-##### reverse engineering
+#### reverse engineering
 
 After some reverse engineering I understood the `fencp.exe` logic:
 
@@ -114,7 +114,7 @@ WriteFile(hFile, fileContent, fileContentLen, &bytesWritten, 0);
 
 ```
 
-#### solution
+### solution
 
 So we have the flag encrypted with AES key and the same AES key encrypted with RSA key stored in one of key containers. 
 
