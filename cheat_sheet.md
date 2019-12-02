@@ -71,6 +71,10 @@ ncat -lkvp 1337 -e "/usr/bin/python3.6 `pwd`/echosvr.py"
 `&>` and `>&` redirect both *stdout* and *stderr* to a file. It's normally written as `&>file` (or `>&file`). It's functionally the same as `>file 2>&1`.
 
 `2>` redirects output to file handle 2 (usually *stderr*) to a file.
+## cat without cat
+`read xxx < /etc/passwd; echo $xxx` single line
+
+`while read -r line; do echo $line; done < /etc/passwd` whole file
 
 # binary
 ## patch binary at offset
