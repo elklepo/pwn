@@ -10,6 +10,7 @@
 After connecting to provided host we can see implementation of TicTacToe game:
 
 ```console
+$ nc pwn-tictactoe.ctfz.one 8889
 Welcome to tictactoe game! Please, enter your name: elklepo
                                                                      
 +---+---+---+    Session: ATuJ5lkz9qgmxinXMIun5JM2WOWHZn6f           
@@ -31,7 +32,7 @@ So we have to win 100 games to get the flag. After some manual tries I was not a
 
 Next, I jumped to server code analysis and reverse engineering (symbols were not stripped so it was quite easy). That's how, in simplified way, the game infrastructure works:
 
-```console
+```
 +-------------------------------player------+
 |                                           |
 +-------------------------------------------+
@@ -59,11 +60,11 @@ Next, I jumped to server code analysis and reverse engineering (symbols were not
 
 `tictactoe` gets human move and computes computer move basing on board state after human move.
 
-Both human move and computer move are sent to `server.py` which is responsible for moves validation, win/lose decision and informing `tictactoe` that user won 100 games and flag is available.
+Both human move and computer move are sent to `server.py` which is responsible for moves validation, win/lose decision and informing `tictactoe` that user won 100 games and the flag is available.
 
 When flag availability is signaled, `tictactoe` is sending "get flag" request to `server.py` which sends flag back if 100 games were won (for simplicity - this call is omitted on above diagram).
 
-It is impossible for user to communicate to `server.py` directly, so let's jump to pwning `tictactoe`. :)
+It is impossible for user to communicate to `server.py` directly so we have to exploit `tictactoe`.
 
 #### tictactoe exploitation
 
