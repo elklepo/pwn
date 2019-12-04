@@ -26,7 +26,7 @@ I did not spot network traffic.
 
 #### static analysis
 
-`fencp.exe` contains plenty of imports but a lot of crap strings suggest some kind of packing. `.text` section was almost entirely not parsed by IDA, except of one method that was most probably responsible for early stages of unpacking.
+`fencp.exe` contains plenty of imports but a lot of crap strings suggest some kind of packing. RW sections were almost entirely not parsed by IDA, except of one method that was most probably responsible for early stages of unpacking.
 
 *PEid* showed that `fencp.exe` is packed with `"PEncrypt 3.1 Final -> junkcode"`. After some googling I was not able to find given packer so I decided unpack it myself. I set breakpoint at:
 
