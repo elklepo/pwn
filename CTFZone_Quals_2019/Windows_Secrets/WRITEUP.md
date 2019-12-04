@@ -123,7 +123,7 @@ So we have the flag encrypted with AES key and the same AES key encrypted with R
 
 Then I followed [this](https://github.com/gentilkiwi/mimikatz/wiki/howto-~-decrypt-EFS-files) guide on how to recover master keys (remember that we know user password) and how to decrypt keys in key containers. (In directory [extract](./extract) I've included all decrypted RSA keys from key containers).
 
-Now all we have to do is to try to decrypt AES key with every RSA key and find the only one that will give us the correct decryption.
+All I had to do at this point was to try to decrypt AES key with every RSA key and find the only one that will give us the correct decryption.
 
 Last thing to do is to decrypt encrypted flag with decrypted AES key.
 
