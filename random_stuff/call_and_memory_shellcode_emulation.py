@@ -102,6 +102,4 @@ uc.hook_add(UC_HOOK_CODE, hook_instruction)
 uc.hook_add(UC_HOOK_MEM_VALID, hook_mem_valid_access)
 uc.hook_add(UC_HOOK_MEM_INVALID, hook_mem_invalid_access)
 
-#TODO: hooking mem https://github.com/unicorn-engine/unicorn/blob/3cea38bff7bf0986337ef0fbf979f2afda42b9fc/bindings/python/unicorn/unicorn.py#L517
-
 uc.emu_start(IMG_BASE, IMG_BASE - 1)
