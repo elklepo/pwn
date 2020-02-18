@@ -106,3 +106,5 @@ blind string formats
 [Cape Sandbox](https://cape.contextis.com/)
 
 [The Ultimate Anti-Reversing Reference](http://anti-reversing.com/Downloads/Anti-Reversing/The_Ultimate_Anti-Reversing_Reference.pdf)
+
+arwin.exe - tool used to determine address of function in particular dll.
