@@ -18,6 +18,9 @@ blind string formats
 
 [Ropper](https://github.com/sashs/Ropper)
 
+## Linux build process
+[PIE vs PIC](https://codywu2010.wordpress.com/2014/11/29/about-elf-pie-pic-and-else/)
+
 ## ROP
 [Return-Oriented-Programming (ROPFTW)](https://www.exploit-db.com/docs/english/28479-return-oriented-programming-(rop-ftw).pdf)
 
