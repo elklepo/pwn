@@ -26,6 +26,10 @@ blind string formats
 
 [Rop tricks](https://trustfoundry.net/basic-rop-techniques-and-tricks/)
 
+[ret2csu](https://i.blackhat.com/briefings/asia/2018/asia-18-Marco-return-to-csu-a-new-method-to-bypass-the-64-bit-Linux-ASLR-wp.pdf)
+
+[re2dlresolve](https://gist.github.com/elklepo/388c4c6a8adaf4af8d3eaaa9d687d7b5)
+
 ## Linux memory management
 [Understanding glibc malloc()](https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/)
 
