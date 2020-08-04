@@ -16,7 +16,8 @@ STACK_SIZE = 1024*1024
 
 mu.mem_map(BASE, 1024*1024)
 mu.mem_map(STACK_ADDR, STACK_SIZE)
-content = read('./fibonacci', mode='rb')
+with open('./fibonacci', 'rb') as f:
+    content = f.read()
 mu.mem_write(BASE, content)
 mu.reg_write(UC_X86_REG_RSP, STACK_ADDR + STACK_SIZE // 2)
 
