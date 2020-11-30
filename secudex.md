@@ -82,6 +82,8 @@ blind string formats
 
 [Exploit Exercises mirror 2](https://exploit-exercises.injecti0n.org/)
 
+[Intel Guide for Developing Multithreaded Applications](https://www.intel.com/software/threading-guide)
+
 ## Windows
 [Reverse Engineering Malware](https://www.hackers-arise.com/single-post/2017/02/17/Reverse-Engineering-Malware-Part-1-Getting-Started)
 
